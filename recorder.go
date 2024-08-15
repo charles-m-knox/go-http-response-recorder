@@ -98,10 +98,7 @@ type responseRecorder struct {
 // Proper usage of a recorder looks like this:
 //
 //	rec := recorder.NewResponseRecorder(w, buf, shouldBuffer)
-//	err := next.ServeHTTP(rec, req)
-//	if err != nil {
-//	    return err
-//	}
+//	next.ServeHTTP(rec, req)
 //	if !rec.Buffered() {
 //	    return nil
 //	}
