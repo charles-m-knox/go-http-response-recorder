@@ -12,7 +12,9 @@ It ships with a `shouldBuffer` qualifier that allows the recorder to decide whet
 
 Processing the http handler's buffer without writing it is important, because the easiest alternative (that doesn't work) is chaining together multiple middleware handlers - first a handler that *counts how many bytes* are written, and then the next handler that *actually does e.g. gzip compression*. The problem with this is that you end up with a buffer that contains both the original payload but *also* the gzipped payload. Pretty clunky.
 
-Caddy's implementation is flexible, battle-tested, and only relies on the standard library. I am releasing it here under the same Apache 2.0 license with which it was published (only modification is the package name and one or two mentions of "caddy" in the code) so that it can be used by my own projects (and anyone else).
+Caddy's implementation is flexible, battle-tested, and only relies on the standard library. I am releasing it here under the same Apache 2.0 license with which it was published (only modification is the package name and one or two mentions of "caddy" in the code) so that it can be used by my own projects (and anyone else that obeys the license).
+
+Thank you to the development team behind Caddy for everything.
 
 ## Usage
 
@@ -24,12 +26,12 @@ To import:
 package main
 
 import (
-    recorder "git.cmcode.dev/cmcode/go-http-response-recorder"
+    recorder "github.com/charles-m-knox/go-http-response-recorder"
 )
 
 ```
 
-And then, as a practical example that *always* buffers, as used in [go-gz-middleware](https://git.cmcode.dev/cmcode/go-gz-middleware).
+And then, as a practical example that *always* buffers, as used in [go-gz-middleware](https://github.com/charles-m-knox/go-gz-middleware).
 
 ```go
 rec := recorder.NewResponseRecorder(w, b, func(status int, header http.Header) bool { return true })
